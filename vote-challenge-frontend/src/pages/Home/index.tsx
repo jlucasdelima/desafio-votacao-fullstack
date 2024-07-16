@@ -35,7 +35,8 @@ function Home() {
         <Form.Item<logInProps>
           name="cpf"
           rules={[
-            { required: true, message: 'Informe o CPF.' }
+            { required: true, message: 'Informe o CPF.' },
+            { min: 14, message: 'CPF inválido.' },
           ]}
         >
           <MaskedInput

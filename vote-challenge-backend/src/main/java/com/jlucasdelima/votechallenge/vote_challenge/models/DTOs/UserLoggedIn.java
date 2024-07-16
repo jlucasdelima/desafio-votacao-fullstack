@@ -1,12 +1,12 @@
-package com.jlucasdelima.votechallenge.vote_challenge.models.responses;
+package com.jlucasdelima.votechallenge.vote_challenge.models.DTOs;
 
 import com.jlucasdelima.votechallenge.vote_challenge.models.entities.User;
 
-public class LogInResponse {
+public class UserLoggedIn {
   public Long id;
   public String cpf;
 
-  public LogInResponse(User user) {
+  public UserLoggedIn(User user) {
     this.id = user.getId();
     this.cpf = user.getCpf();
   }

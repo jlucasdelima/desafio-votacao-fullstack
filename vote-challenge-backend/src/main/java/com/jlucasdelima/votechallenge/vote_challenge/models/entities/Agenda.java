@@ -51,11 +51,9 @@ public class Agenda {
 
   public Agenda() {}
 
-  public Agenda(String title, String description, LocalDateTime startTimestamp, LocalDateTime endTimestamp, User userCreator) {
+  public Agenda(String title, String description, User userCreator) {
     this.title = title;
     this.description = description;
-    this.startTimestamp = startTimestamp;
-    this.endTimestamp = endTimestamp;
     this.userCreator = userCreator;
   }
 }

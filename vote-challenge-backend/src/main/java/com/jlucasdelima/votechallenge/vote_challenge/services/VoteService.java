@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.jlucasdelima.votechallenge.vote_challenge.models.DTOs.requests.NewVoteRequest;
 import com.jlucasdelima.votechallenge.vote_challenge.models.entities.Agenda;
 import com.jlucasdelima.votechallenge.vote_challenge.models.entities.User;
 import com.jlucasdelima.votechallenge.vote_challenge.models.entities.Vote.Vote;
 import com.jlucasdelima.votechallenge.vote_challenge.models.entities.Vote.VotePK;
-import com.jlucasdelima.votechallenge.vote_challenge.models.requests.NewVoteRequest;
 import com.jlucasdelima.votechallenge.vote_challenge.repositories.AgendaRepository;
 import com.jlucasdelima.votechallenge.vote_challenge.repositories.UserRepository;
 import com.jlucasdelima.votechallenge.vote_challenge.repositories.VoteRepository;
@@ -29,7 +29,7 @@ public class VoteService {
     User votingUser = userRepository.findById(voteReq.userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Access Denied"));
     Agenda votingAgenda = agendaRepository.findById(voteReq.agendaId).orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Access Denied"));
 
-    if (!agendaService.isActive(votingAgenda))
+    if (!agendaService.isOpen(votingAgenda))
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Voting closed");
 
     Vote vote = new Vote();

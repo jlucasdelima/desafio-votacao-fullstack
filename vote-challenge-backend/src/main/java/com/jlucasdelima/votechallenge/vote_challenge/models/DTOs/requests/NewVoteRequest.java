@@ -1,4 +1,4 @@
-package com.jlucasdelima.votechallenge.vote_challenge.models.requests;
+package com.jlucasdelima.votechallenge.vote_challenge.models.DTOs.requests;
 
 public class NewVoteRequest {
   public Long userId;

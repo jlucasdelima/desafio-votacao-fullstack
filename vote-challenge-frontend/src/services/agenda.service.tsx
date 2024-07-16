@@ -1,25 +1,58 @@
-export type OpenAgenda = {
+export type PendingAgenda = {
   id: number,
   title: string,
   description: string,
-  endTimestamp: string,
-  startTimestamp: string,
-  active: boolean,
-  voted: boolean,
+  isOpen: boolean,
+  isVoted: boolean,
 };
 
 export type FinishedAgenda = {
   title: string,
   description: string,
-  endTimestamp: string,
-  startTimestamp: string,
   totalVotes: number,
   approvalRatio: number,
 };
 
-export const getOpenAgendas = async (userId: number): Promise<OpenAgenda[]> => {
+export type CreateAgendaData = {
+  title: string,
+  description: string,
+  userCreatorId: number
+}
 
-  const response = (await fetch('http://localhost:8080/api/agenda/open', {
+export type OpenAgendaData = {
+  agendaId: number;
+  sessionDuration: number;
+};
+
+export const registerAgenda = async (createAgendaData: CreateAgendaData): Promise<Response> => {
+
+  const response = await fetch('http://localhost:8080/api/agenda', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(createAgendaData),
+  });
+
+  return response;
+};
+
+export const openAgenda = async (openAgendaData: OpenAgendaData): Promise<Response> => {
+
+  const response = await fetch('http://localhost:8080/api/agenda/open', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(openAgendaData),
+  });
+
+  return response;
+};
+
+export const getPendingAgendas = async (userId: number): Promise<PendingAgenda[]> => {
+
+  const response = (await fetch('http://localhost:8080/api/agenda/pending', {
     method: 'GET',
     headers: {
       'Application-User': `${userId}`,
@@ -27,7 +60,7 @@ export const getOpenAgendas = async (userId: number): Promise<OpenAgenda[]> => {
     },
   }));
 
-  return await response.json() as OpenAgenda[];
+  return await response.json() as PendingAgenda[];
 };
 
 export const getFinishedAgendas = async (): Promise<FinishedAgenda[]> => {

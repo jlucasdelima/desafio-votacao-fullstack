@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jlucasdelima.votechallenge.vote_challenge.models.DTOs.UserLoggedIn;
+import com.jlucasdelima.votechallenge.vote_challenge.models.DTOs.requests.LogInRequest;
 import com.jlucasdelima.votechallenge.vote_challenge.models.entities.User;
-import com.jlucasdelima.votechallenge.vote_challenge.models.requests.LogInRequest;
-import com.jlucasdelima.votechallenge.vote_challenge.models.responses.LogInResponse;
 import com.jlucasdelima.votechallenge.vote_challenge.services.UserService;
 
 
@@ -20,12 +20,12 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @PostMapping("/")
-  public LogInResponse postUser(@RequestBody LogInRequest logInReq) {
+  @PostMapping
+  public UserLoggedIn postUser(@RequestBody LogInRequest logInReq) {
     User user = new User();
     user.setCpf(logInReq.cpf);
   
     User inserted = userService.insert(user);
-    return new LogInResponse(inserted);
+    return new UserLoggedIn(inserted);
   }
 }

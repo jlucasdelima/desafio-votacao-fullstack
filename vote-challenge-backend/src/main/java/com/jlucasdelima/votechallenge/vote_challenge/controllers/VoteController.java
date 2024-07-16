@@ -3,7 +3,7 @@ package com.jlucasdelima.votechallenge.vote_challenge.controllers;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.jlucasdelima.votechallenge.vote_challenge.models.requests.NewVoteRequest;
+import com.jlucasdelima.votechallenge.vote_challenge.models.DTOs.requests.NewVoteRequest;
 import com.jlucasdelima.votechallenge.vote_challenge.services.VoteService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class VoteController {
   @Autowired
   private VoteService voteService;
 
-  @PostMapping("/")
+  @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   public void postVote(@RequestBody NewVoteRequest voteReq) throws ResponseStatusException {
     voteService.insert(voteReq);
