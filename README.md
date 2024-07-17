@@ -1,3 +1,9 @@
+# Setup
+
+- É necessário docker
+- Após clonar o repositório,
+  executar o comando "docker compose up" na raiz do projeto
+
 # Votação
 
 ## Objetivo
