@@ -3,6 +3,7 @@
 - É necessário docker
 - Após clonar o repositório,
   executar o comando "docker compose up" na raiz do projeto
+- Acessar a aplicação através do endereço http://localhost:5173/
 
 # Votação
 
