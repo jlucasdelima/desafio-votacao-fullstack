@@ -1,5 +1,5 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Button, Form } from "antd";
+import { Button, Col, Divider, Form, Row } from "antd";
 import { MaskedInput } from "antd-mask-input";
 import { logIn } from "../../services/user.sevice";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,12 @@ function Home() {
   
   return (
     <section className="page">
-      <Title level={2}>Desafio Votação</Title>
+      <Title level={2} style={{ margin: 0 }}>Desafio Votação</Title>
+      <Row className="title-divider">
+        <Col xs={24} md={12} xl={8}>
+          <Divider />
+        </Col>
+      </Row>
       <Form
         name="user-login"
         className="login-form"
